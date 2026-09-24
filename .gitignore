@@ -1,0 +1,76 @@
+# ─── Dependencies ─────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Build outputs ────────────────────────────────────────
+dist/
+.next/
+out/
+build/
+
+# ─── Environment files (NEVER commit real secrets) ────────
+.env
+.env.local
+.env.production
+.env.*.local
+backend/.env
+backend/.env.production
+frontend/.env
+frontend/.env.production
+**/.env
+**/.env.local
+**/.env.production
+**/.env.*.local
+
+# ─── Logs ─────────────────────────────────────────────────
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── Testing ──────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Database ─────────────────────────────────────────────
+*.sql
+*.sqlite
+*.db
+
+# Prisma migration history is source code, not a database dump.
+!backend/prisma/migrations/
+!backend/prisma/migrations/**/*.sql
+
+# ─── Uploads (user files — not in version control) ────────
+backend/uploads/
+
+# ─── SSL certificates (managed separately) ────────────────
+*.pem
+*.key
+*.crt
+*.p12
+
+# ─── IDE ──────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ─── Backups ──────────────────────────────────────────────
+backups/
+*.bak
+*.backup
+*.tar.gz
+*.zip
+*.gz
+
+# ─── Docker ───────────────────────────────────────────────
+.docker/
+
+# ─── Prisma ───────────────────────────────────────────────
+backend/prisma/migrations/dev.db

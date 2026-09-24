@@ -1,0 +1,57 @@
+# ============================================================
+# Fail2Ban - ERP System Configuration
+# /etc/fail2ban/jail.local
+# ============================================================
+
+[DEFAULT]
+# Ban for 1 hour by default
+bantime  = 3600
+# Find window: 10 minutes
+findtime = 600
+# Max attempts before ban
+maxretry = 5
+# Email notifications
+destemail = admin@yourdomain.com
+sender = fail2ban@yourdomain.com
+action = %(action_mwl)s
+
+# Use UFW for banning
+banaction = ufw
+
+# ─── SSH protection ─────────────────────────────────────────
+[sshd]
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+bantime  = 86400
+
+# ─── Nginx rate limits ──────────────────────────────────────
+[nginx-req-limit]
+enabled  = true
+filter   = nginx-req-limit
+action   = iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]
+logpath  = /var/log/nginx/error.log
+findtime = 600
+bantime  = 7200
+maxretry = 10
+
+# ─── Nginx bad bots ─────────────────────────────────────────
+[nginx-botsearch]
+enabled  = true
+filter   = nginx-botsearch
+logpath  = /var/log/nginx/access.log
+findtime = 600
+bantime  = 86400
+maxretry = 2
+
+# ─── ERP API brute force ────────────────────────────────────
+[erp-api]
+enabled  = true
+filter   = erp-api
+logpath  = /var/log/nginx/access.log
+findtime = 300
+bantime  = 3600
+maxretry = 5
+port     = http,https
