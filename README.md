@@ -1,6 +1,6 @@
 # ERP + POS System
 
-> Plataforma empresarial para operaciones de retail: ventas, inventario, compras, clientes, créditos y control multi-sucursal.
+> Business platform for retail operations: sales, inventory, purchases, customers, credit and multi-branch control.
 
 ![Portfolio project](https://img.shields.io/badge/portfolio-project-111827?style=flat-square)
 ![Next.js](https://img.shields.io/badge/Next.js-14-111827?style=flat-square&logo=next.js)
@@ -8,67 +8,67 @@
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql)
 ![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker)
 
-## Resumen
+## Overview
 
-ERP + POS es un proyecto de portafolio orientado a negocios de retail en Guatemala. Su objetivo es centralizar las operaciones diarias de una empresa en una sola plataforma: vender en punto de venta, controlar existencias por sucursal, administrar clientes y proveedores, registrar compras, gestionar créditos y consultar indicadores operativos.
+ERP + POS is a portfolio project aimed at retail businesses in Guatemala. Its goal is to centralize the daily operations of a company in a single platform: sell at the point of sale, track stock per branch, manage customers and suppliers, record purchases, handle credit and consult operational indicators.
 
-El sistema está construido como un **modular monolith**: mantiene una sola aplicación desplegable, pero separa las capacidades del negocio en módulos que pueden evolucionar de forma independiente. Esta decisión conserva la simplicidad operativa de un monolito y deja límites claros para una futura evolución.
+The system is built as a **modular monolith**: it keeps a single deployable application, but separates business capabilities into modules that can evolve independently. This decision preserves the operational simplicity of a monolith while leaving clear boundaries for future growth.
 
-## Demo para reclutadores
+## Demo for recruiters
 
-La demo visual es independiente del sistema principal y no necesita Node.js, Docker ni base de datos.
+The visual demo is independent of the main system and does not require Node.js, Docker or a database.
 
-1. Abre [demo/index.html](demo/index.html) en el navegador.
-2. Prueba buscar productos, agregarlos al carrito y confirmar una venta.
-3. Revisa el código de la demo: está comentado y usa una separación simple entre estado, cálculos y renderizado.
+1. Open [demo/index.html](demo/index.html) in the browser.
+2. Try searching for products, adding them to the cart and confirming a sale.
+3. Review the demo code: it is commented and uses a simple separation between state, calculations and rendering.
 
-La demo representa el flujo de POS con datos locales. El proyecto completo contiene además el backend NestJS, persistencia PostgreSQL, autenticación, RBAC y los módulos empresariales descritos abajo.
+The demo represents the POS flow with local data. The full project also includes the NestJS backend, PostgreSQL persistence, authentication, RBAC and the business modules described below.
 
-## Capacidades principales
+## Main capabilities
 
-| Área | Capacidades |
+| Area | Capabilities |
 | --- | --- |
-| Dashboard | KPIs, tendencias de ventas, comparación entre sucursales y actividad reciente |
-| POS | Búsqueda por nombre, SKU o código de barras; carrito; métodos de pago; cálculo de cambio |
-| Inventario | Stock por sucursal, kardex, movimientos, lotes, vencimientos, ajustes y transferencias |
-| Ventas | Historial, detalle, anulaciones, resumen diario y filtros operativos |
-| Compras | Órdenes de compra, recepción de mercancía, costos y proveedores |
-| Clientes | Directorio, historial de ventas, límite y saldo de crédito |
-| Créditos | Cuentas por cobrar, pagos parciales, vencimientos y aging report |
-| Auditoría | Registro de acciones relevantes, actor, recurso, fecha y contexto de la operación |
-| Acceso | JWT, refresh tokens rotativos, Argon2id, bloqueo por intentos fallidos y RBAC |
-| Operación | Multi-sucursal, notificaciones, WebSockets y configuración preparada para despliegue con Nginx |
+| Dashboard | KPIs, sales trends, comparison between branches and recent activity |
+| POS | Search by name, SKU or barcode; cart; payment methods; change calculation |
+| Inventory | Stock per branch, kardex, movements, lots, expirations, adjustments and transfers |
+| Sales | History, detail, voids, daily summary and operational filters |
+| Purchases | Purchase orders, goods reception, costs and suppliers |
+| Customers | Directory, sales history, credit limit and credit balance |
+| Credit | Accounts receivable, partial payments, due dates and aging report |
+| Audit | Log of relevant actions, actor, resource, date and operation context |
+| Access | JWT, rotating refresh tokens, Argon2id, lockout after failed attempts and RBAC |
+| Operations | Multi-branch, notifications, WebSockets and configuration ready for deployment with Nginx |
 
-## Arquitectura
+## Architecture
 
 ```text
 ┌──────────────────────┐
 │ Next.js 14 / React   │  App Router, TypeScript, TailwindCSS
 └──────────┬───────────┘
-           │ REST / cookies / WebSocket
+            │ REST / cookies / WebSocket
 ┌──────────▼───────────┐
-│ NestJS modular API   │  Auth, RBAC, ventas, inventario, compras...
+│ NestJS modular API   │  Auth, RBAC, sales, inventory, purchases...
 └──────────┬───────────┘
-           │ Prisma ORM
+            │ Prisma ORM
 ┌──────────▼───────────┐       ┌──────────────────────┐
 │ PostgreSQL 16        │       │ Redis 7              │
-│ datos transaccionales│       │ cache y datos efímeros│
+│ transactional data   │       │ cache & ephemeral    │
 └──────────────────────┘       └──────────────────────┘
 ```
 
-El código está organizado por capacidades de negocio en [backend/src](backend/src) y [frontend/src](frontend/src). El esquema y las migraciones se encuentran en [backend/prisma](backend/prisma).
+The code is organized by business capability in [backend/src](backend/src) and [frontend/src](frontend/src). The schema and migrations live in [backend/prisma](backend/prisma).
 
-## Stack técnico
+## Tech stack
 
 ### Frontend
 
-- Next.js 14 con App Router.
-- React y TypeScript estricto.
-- TailwindCSS y componentes UI reutilizables.
-- Framer Motion para interacciones puntuales.
-- Axios para el cliente HTTP.
-- `jose` para validación del access token en middleware.
-- Recharts para visualizaciones.
+- Next.js 14 with App Router.
+- React and strict TypeScript.
+- TailwindCSS and reusable UI components.
+- Framer Motion for targeted interactions.
+- Axios as the HTTP client.
+- `jose` for access token validation in middleware.
+- Recharts for visualizations.
 
 ### Backend
 
@@ -76,61 +76,61 @@ El código está organizado por capacidades de negocio en [backend/src](backend/
 - TypeScript.
 - Prisma ORM.
 - PostgreSQL 16.
-- Redis 7 e Ioredis.
-- Socket.IO para eventos en tiempo real.
-- Argon2id para hash de contraseñas.
-- Helmet, CORS, throttling y sanitización de entradas.
-- Winston con rotación diaria de logs.
+- Redis 7 and Ioredis.
+- Socket.IO for real-time events.
+- Argon2id for password hashing.
+- Helmet, CORS, throttling and input sanitization.
+- Winston with daily log rotation.
 
-### Infraestructura
+### Infrastructure
 
-- Docker Compose para desarrollo.
-- Dockerfiles separados para desarrollo y producción.
-- Nginx como reverse proxy.
-- Configuración preparada para HTTPS, Cloudflare y WebSockets.
-- Scripts de firewall, SSL, backups y Fail2Ban.
+- Docker Compose for development.
+- Separate Dockerfiles for development and production.
+- Nginx as reverse proxy.
+- Configuration ready for HTTPS, Cloudflare and WebSockets.
+- Firewall, SSL, backup and Fail2Ban scripts.
 
-## Módulos del backend
+## Backend modules
 
 ```text
 backend/src/
-├── auth/             # Login, registro, refresh tokens y sesiones
-├── users/            # Usuarios y cambio de contraseñas
-├── roles/            # Roles y permisos
-├── branches/         # Sucursales
-├── products/         # Catálogo, SKU y barcode
-├── inventory/        # Stock, kardex, lotes y transferencias
-├── sales/            # Ventas y anulaciones
-├── purchases/        # Compras y recepción
-├── customers/        # Clientes y crédito
-├── suppliers/        # Proveedores
-├── credits/          # Pagos y vencimientos
-├── dashboard/        # Indicadores y agregaciones
-├── notifications/    # Notificaciones del sistema
-├── audit/            # Auditoría de operaciones
-├── upload/           # Archivos validados
-├── events/           # Gateway Socket.IO
-└── common/           # Guards, filtros, middleware y tareas
+├── auth/             # Login, registration, refresh tokens and sessions
+├── users/            # Users and password changes
+├── roles/            # Roles and permissions
+├── branches/         # Branches
+├── products/         # Catalog, SKU and barcode
+├── inventory/        # Stock, kardex, lots and transfers
+├── sales/            # Sales and voids
+├── purchases/        # Purchases and goods reception
+├── customers/        # Customers and credit
+├── suppliers/        # Suppliers
+├── credits/          # Payments and due dates
+├── dashboard/        # Indicators and aggregations
+├── notifications/    # System notifications
+├── audit/            # Operation auditing
+├── upload/           # Validated files
+├── events/           # Socket.IO gateway
+└── common/           # Guards, filters, middleware and tasks
 ```
 
-## Seguridad implementada
+## Security implemented
 
-- Access token JWT de corta duración y refresh token rotativo.
-- Refresh tokens almacenados como hash SHA-256.
-- Contraseñas protegidas con Argon2id.
-- Bloqueo temporal después de intentos fallidos de autenticación.
-- RBAC con los roles `super_admin`, `admin`, `manager`, `cashier`, `inventory` y `sales`.
-- Guards globales para autenticación y guards específicos para roles/permisos.
-- CORS con allowlist de orígenes.
-- Helmet y cabeceras de seguridad.
-- Throttling global y límites más estrictos para login, registro y uploads.
-- Sanitización de entradas HTML.
-- Validación de extensión, MIME y tamaño de archivos.
-- Auditoría de login, cambios de usuarios, permisos, uploads, ventas y movimientos.
+- Short-lived JWT access token and rotating refresh token.
+- Refresh tokens stored as SHA-256 hashes.
+- Passwords protected with Argon2id.
+- Temporary lockout after failed authentication attempts.
+- RBAC with the roles `super_admin`, `admin`, `manager`, `cashier`, `inventory` and `sales`.
+- Global authentication guards and specific role/permission guards.
+- CORS with an origin allowlist.
+- Helmet and security headers.
+- Global throttling and stricter limits for login, registration and uploads.
+- HTML input sanitization.
+- Validation of file extension, MIME type and size.
+- Auditing of logins, user changes, permissions, uploads, sales and movements.
 
-## Modelo de datos
+## Data model
 
-El modelo Prisma cubre las entidades principales de un ERP/POS:
+The Prisma model covers the main entities of an ERP/POS:
 
 ```text
 User ── UserRole ── Role ── RolePermission ── Permission
@@ -141,11 +141,11 @@ User ── UserRole ── Role ── RolePermission ── Permission
   └── AuditLog / RefreshToken / Notification
 ```
 
-Las operaciones monetarias usan `Decimal` en Prisma y los movimientos de inventario registran saldo anterior, saldo posterior, referencia y usuario responsable.
+Monetary operations use `Decimal` in Prisma, and inventory movements record the previous balance, the resulting balance, a reference and the responsible user.
 
-## API destacada
+## Key API endpoints
 
-La API utiliza el prefijo `/api/v1` y expone documentación Swagger durante desarrollo.
+The API uses the `/api/v1` prefix and exposes Swagger documentation during development.
 
 ```text
 POST /api/v1/auth/login
@@ -171,28 +171,28 @@ POST /api/v1/credits/:id/payment
 GET  /api/v1/audit
 ```
 
-## Ejecutar el sistema completo
+## Running the full system
 
-### Requisitos
+### Requirements
 
 - Node.js 20 LTS.
-- Docker Desktop 24 o superior.
+- Docker Desktop 24 or later.
 - Git.
-- 4 GB de RAM disponibles; 8 GB recomendados.
+- 4 GB of RAM available; 8 GB recommended.
 
-### Configuración
+### Configuration
 
-El sistema utiliza archivos separados para cada proceso:
+The system uses separate files for each process:
 
 ```text
-.env             # PostgreSQL, Redis y dominio del Compose
-backend/.env     # NestJS, Prisma, JWT, cookies y logs
-frontend/.env    # URL pública de la API y JWT del middleware
+.env             # PostgreSQL, Redis and the Compose domain
+backend/.env     # NestJS, Prisma, JWT, cookies and logs
+frontend/.env    # Public API URL and middleware JWT
 ```
 
-Consulta los archivos `.env.example` antes de crear valores reales. Los secretos no deben subirse al repositorio.
+Check the `.env.example` files before creating real values. Secrets must not be pushed to the repository.
 
-### Arranque con Docker
+### Startup with Docker
 
 ```powershell
 docker compose up -d --build
@@ -202,7 +202,7 @@ docker compose exec backend npx prisma migrate deploy
 docker compose exec backend npm run prisma:seed
 ```
 
-URLs locales:
+Local URLs:
 
 ```text
 Frontend: http://localhost:3001
@@ -210,11 +210,11 @@ API:      http://localhost:3000/api/v1
 Swagger:  http://localhost:3000/api/docs
 ```
 
-El seed crea el usuario inicial `admin@erp.local`. La contraseña de desarrollo debe cambiarse inmediatamente en cualquier entorno compartido o productivo.
+The seed creates the initial `admin@erp.local` user. The development password must be changed immediately in any shared or production environment.
 
-### Desarrollo sin Docker
+### Development without Docker
 
-Se requiere PostgreSQL y Redis disponibles localmente.
+PostgreSQL and Redis must be available locally.
 
 ```powershell
 cd backend
@@ -224,7 +224,7 @@ npx prisma migrate dev
 npm run start:dev
 ```
 
-En otra terminal:
+In another terminal:
 
 ```powershell
 cd frontend
@@ -232,55 +232,55 @@ npm install
 npm run dev
 ```
 
-## Estructura del repositorio
+## Repository structure
 
 ```text
 erp-system/
-├── backend/                 # API NestJS y Prisma
-├── frontend/                # Aplicación Next.js
-├── demo/                    # Demo estática para portafolio
-├── nginx/                   # Reverse proxy y HTTPS
-├── infrastructure/          # Backups, firewall, SSL y monitoreo
-├── docker-compose.yml       # Desarrollo local
-├── docker-compose.prod.yml  # Despliegue productivo
-├── SECURITY.md              # Arquitectura de seguridad
-└── docs/                    # Requisitos y guía de instalación
+├── backend/                 # NestJS API and Prisma
+├── frontend/                # Next.js application
+├── demo/                    # Static portfolio demo
+├── nginx/                   # Reverse proxy and HTTPS
+├── infrastructure/          # Backups, firewall, SSL and monitoring
+├── docker-compose.yml       # Local development
+├── docker-compose.prod.yml  # Production deployment
+├── SECURITY.md              # Security architecture
+└── docs/                    # Requirements and setup guide
 ```
 
-## Decisiones técnicas destacadas
+## Notable technical decisions
 
 ### Modular monolith
 
-Se eligió un monolito modular para mantener el despliegue simple y, al mismo tiempo, separar dominios de negocio. Es una base más razonable para este tamaño de sistema que introducir microservicios prematuramente.
+A modular monolith was chosen to keep deployment simple while still separating business domains. It is a more reasonable foundation at this system size than introducing microservices prematurely.
 
-### PostgreSQL para la verdad transaccional
+### PostgreSQL for transactional truth
 
-Ventas, stock, créditos, compras y auditoría viven en PostgreSQL. Redis se reserva para datos temporales, rate limiting y capacidades que no deben sustituir la persistencia transaccional.
+Sales, stock, credit, purchases and audit data live in PostgreSQL. Redis is reserved for temporary data, rate limiting and capabilities that must not replace transactional persistence.
 
-### Seguridad por capas
+### Layered security
 
-La autenticación no depende solamente del frontend. El backend valida identidad, rol, permisos, entrada y estado de la cuenta; Nginx y Docker agregan límites y aislamiento en despliegue.
+Authentication does not depend on the frontend alone. The backend validates identity, role, permissions, input and account state; Nginx and Docker add limits and isolation in deployment.
 
-## Estado del proyecto
+## Project status
 
-El repositorio es una base funcional de portafolio en evolución. La demo estática permite revisar rápidamente la experiencia de POS; el sistema principal contiene la arquitectura de backend, persistencia, autenticación y módulos empresariales para continuar el endurecimiento antes de un despliegue productivo.
+The repository is a functional portfolio base under active evolution. The static demo allows a quick review of the POS experience; the main system contains the backend architecture, persistence, authentication and business modules to keep hardening before a production deployment.
 
-Las siguientes áreas son parte de la evolución técnica prevista:
+The following areas are part of the planned technical evolution:
 
-- Integración progresiva de todas las pantallas con la API real.
-- DTOs runtime completos y validación de configuración al arrancar.
-- Pruebas unitarias, integración y E2E para ventas, inventario, créditos y permisos.
-- Transacciones y locking reforzados en operaciones concurrentes.
-- Health checks, métricas y pipeline CI/CD.
-- Evolución gradual hacia Clean Architecture donde aporte valor real.
+- Progressive integration of every screen with the real API.
+- Complete runtime DTOs and configuration validation on startup.
+- Unit, integration and E2E tests for sales, inventory, credit and permissions.
+- Reinforced transactions and locking in concurrent operations.
+- Health checks, metrics and a CI/CD pipeline.
+- Gradual evolution towards Clean Architecture where it brings real value.
 
-## Documentación relacionada
+## Related documentation
 
-- [Guía de instalación](docs/setup.md)
-- [Requisitos del sistema](docs/requirements.md)
-- [Arquitectura de seguridad](SECURITY.md)
-- [Demo de portafolio](demo/index.html)
+- [Setup guide](docs/setup.md)
+- [System requirements](docs/requirements.md)
+- [Security architecture](SECURITY.md)
+- [Portfolio demo](demo/index.html)
 
 ---
 
-Proyecto de portafolio enfocado en arquitectura empresarial, operaciones de retail y desarrollo full-stack con TypeScript.
+Portfolio project focused on enterprise architecture, retail operations and full-stack development with TypeScript.
