@@ -1,8 +1,6 @@
 # ERP + POS System
 
 > Business platform for retail operations: sales, inventory, purchases, customers, credit and multi-branch control.
-
-![Portfolio project](https://img.shields.io/badge/portfolio-project-111827?style=flat-square)
 ![Next.js](https://img.shields.io/badge/Next.js-14-111827?style=flat-square&logo=next.js)
 ![NestJS](https://img.shields.io/badge/NestJS-10-E0234E?style=flat-square&logo=nestjs)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat-square&logo=postgresql)
@@ -10,7 +8,7 @@
 
 ## Overview
 
-ERP + POS is a portfolio project aimed at retail businesses in Guatemala. Its goal is to centralize the daily operations of a company in a single platform: sell at the point of sale, track stock per branch, manage customers and suppliers, record purchases, handle credit and consult operational indicators.
+ERP + POS is a project aimed at retail businesses in Guatemala. Its goal is to centralize the daily operations of a company in a single platform: sell at the point of sale, track stock per branch, manage customers and suppliers, record purchases, handle credit and consult operational indicators.
 
 The system is built as a **modular monolith**: it keeps a single deployable application, but separates business capabilities into modules that can evolve independently. This decision preserves the operational simplicity of a monolith while leaving clear boundaries for future growth.
 
@@ -238,7 +236,7 @@ npm run dev
 erp-system/
 ├── backend/                 # NestJS API and Prisma
 ├── frontend/                # Next.js application
-├── demo/                    # Static portfolio demo
+├── demo/                    # Static demo
 ├── nginx/                   # Reverse proxy and HTTPS
 ├── infrastructure/          # Backups, firewall, SSL and monitoring
 ├── docker-compose.yml       # Local development
@@ -263,7 +261,7 @@ Authentication does not depend on the frontend alone. The backend validates iden
 
 ## Project status
 
-The repository is a functional portfolio base under active evolution. The static demo allows a quick review of the POS experience; the main system contains the backend architecture, persistence, authentication and business modules to keep hardening before a production deployment.
+The repository is a functional base under active evolution. The static demo allows a quick review of the POS experience; the main system contains the backend architecture, persistence, authentication and business modules to keep hardening before a production deployment.
 
 The following areas are part of the planned technical evolution:
 
@@ -279,8 +277,7 @@ The following areas are part of the planned technical evolution:
 - [Setup guide](docs/setup.md)
 - [System requirements](docs/requirements.md)
 - [Security architecture](SECURITY.md)
-- [Portfolio demo](demo/index.html)
+- [Demo](demo/index.html)
 
 ---
-
-Portfolio project focused on enterprise architecture, retail operations and full-stack development with TypeScript.
+Project focused on enterprise architecture, retail operations and full-stack development with TypeScript.
